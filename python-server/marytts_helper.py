@@ -49,10 +49,10 @@ def generateWav(input_text):
         end = time.time()
         print(end - start)
         # Play the wav file
-        #pygame.mixer.init(frequency=16000) # Initialise the mixer
-        #s = pygame.mixer.Sound("/tmp/output_wav.wav")
-        #s.play()
-        #pygame.time.wait(int(math.ceil(s.get_length() * 1000)))
+        pygame.mixer.init(frequency=16000) # Initialise the mixer
+        s = pygame.mixer.Sound("/tmp/output_wav.wav")
+        s.play()
+        pygame.time.wait(int(math.ceil(s.get_length() * 1000)))
 
     else:
         raise Exception(content)
