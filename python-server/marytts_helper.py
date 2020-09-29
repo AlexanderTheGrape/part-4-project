@@ -25,8 +25,8 @@ def generateWav(input_text):
     # Build the query
     query_hash = {"INPUT_TEXT":input_text,
                 "INPUT_TYPE":"TEXT", # Input text
-                "LOCALE":"en_NZ",
-                "VOICE":"akl_nz_sh_neu-hsmm", # Voice informations  (need to be compatible)
+                "LOCALE":"en_US",
+                "VOICE":"cmu-slt-hsmm", # Voice informations  (need to be compatible)
                 "OUTPUT_TYPE":"AUDIO",
                 "AUDIO":"WAVE", # Audio informations (need both)
                 }
@@ -42,17 +42,17 @@ def generateWav(input_text):
     if (resp["content-type"] == "audio/x-wav"):
 
         # Write the wav file
-        wfilename = "results/mary_test"
+        wfilename = "results/mary_test.wav"
         f = open(wfilename, "wb")
         f.write(content)
         f.close()
         end = time.time()
         print(end - start)
         # Play the wav file
-        pygame.mixer.init(frequency=16000) # Initialise the mixer
-        s = pygame.mixer.Sound("/tmp/output_wav.wav")
-        s.play()
-        pygame.time.wait(int(math.ceil(s.get_length() * 1000)))
+        # pygame.mixer.init(frequency=16000) # Initialise the mixer
+        # s = pygame.mixer.Sound("/tmp/output_wav.wav")
+        # s.play()
+        # pygame.time.wait(int(math.ceil(s.get_length() * 1000)))
 
     else:
         raise Exception(content)
