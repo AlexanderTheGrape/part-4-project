@@ -36,5 +36,5 @@ while True:
     
     
     
-    # generateWav(textToSynthesize)
+    generateWav(received_str)
         
