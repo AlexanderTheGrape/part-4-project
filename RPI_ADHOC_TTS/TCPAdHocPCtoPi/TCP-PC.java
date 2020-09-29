@@ -24,10 +24,10 @@ class TCPPC {
     }
 
     public String sendMessage(String[] commandarray) throws IOException {
-        String message = "";
+        String message = commandarray[1];
         
-        for(int i = 1; i < commandarray.length;i++){
-            message = message + commandarray[i];
+        for(int i = 2; i < commandarray.length;i++){
+            message = message + " " + commandarray[i];
         }
 
         outToServer.writeBytes(message + '\n');

@@ -11,18 +11,21 @@ serversocket.bind(('localhost', 8089))
 serversocket.listen(5) # become a server socket, maximum 5 connections
 
 connection, address = serversocket.accept()
-
+buffered_socket = BufferedSocket(connection, None)
 while True:
-    
-
-    buffered_socket = BufferedSocket(connection, None)
 
     # may need to move while loop here
     # buf = connection.recv(1024)
-    byte_string = buffered_socket.recv(32786)
-    received_str = byte_string.decode("utf-8")
-
+    print("Awaiting Message")
+    received_str = ""
+    while not('\n' in received_str):
+        byte_string = buffered_socket.recv(32786)
+        received_str = received_str + byte_string.decode("utf-8")
+        
     print("received message: " + received_str)
+
+
+    
 
     # last_buffer_size = 0
     # if len(buf) > 0:
