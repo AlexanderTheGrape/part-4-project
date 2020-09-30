@@ -42,7 +42,7 @@ def generateWav(input_text):
     if (resp["content-type"] == "audio/x-wav"):
 
         # Write the wav file
-        wfilename = "results/mary_test.wav"
+        wfilename = "mary_test.wav"
         f = open(wfilename, "wb")
         f.write(content)
         f.close()

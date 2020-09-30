@@ -4,11 +4,14 @@ from marytts_helper import generateWav
 
 # CURRENTLY RECEIVES 1024 BYTES AT A TIME.
 
-# MaryTTS startup stuff here
-
+port = 8089
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind(('localhost', 8089))
+# ip = serversocket.getsockname()[0]
+# print("ip is: " + str(ip))
+serversocket.bind(('', port))
 serversocket.listen(5) # become a server socket, maximum 5 connections
+
+print("Hosted on: " + socket.gethostbyname(socket.gethostname()) +":" + str(port))
 
 connection, address = serversocket.accept()
 buffered_socket = BufferedSocket(connection, None)
