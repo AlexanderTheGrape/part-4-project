@@ -1,4 +1,5 @@
 import socket
+import os
 from boltons.socketutils import BufferedSocket
 from marytts_helper import generateWav
 
@@ -10,8 +11,13 @@ serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # print("ip is: " + str(ip))
 serversocket.bind(('', port))
 serversocket.listen(5) # become a server socket, maximum 5 connections
+#print("My name is: " + socket.gethostname() + "\n")
 
-print("Hosted on: " + socket.gethostbyname(socket.gethostname()) +":" + str(port))
+if (os.name == "posix"):
+    print("Type 'hostname -I' in console to find host address. Port: " + str(port))
+else:
+    print("Server hosted on: " + socket.gethostbyname(socket.gethostname()) +":" + str(port))
+
 
 connection, address = serversocket.accept()
 buffered_socket = BufferedSocket(connection, None)
